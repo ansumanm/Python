@@ -1,6 +1,3 @@
-Here's the markdown document corrected for markdown formatting errors:
-
-```markdown
 # Python 3 String Operations Reference Sheet
 
 ## Basic String Operations
