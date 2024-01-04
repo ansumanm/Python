@@ -164,7 +164,7 @@ while True:
     # Condition to continue/exit the loop
     if not condition:
         break
-
+```
 
 # Python 'If' Checks in Data Structures Reference Card
 
