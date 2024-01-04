@@ -127,3 +127,29 @@ Python offers several built-in data structures that are optimized for various us
 - **Set Comprehensions**: Syntax similar to lists and dictionaries but with curly braces. Syntax: `{expr for item in iterable}`
 
 Python's data structures are powerful and provide a wide range of functionality for handling various data types and operations.
+
+## Looping/Iterating Through Data Structures
+
+### Looping Over Lists
+- Basic For Loop: `for item in my_list: print(item)`
+- With Index: `for index, item in enumerate(my_list): print(index, item)`
+
+### Looping Over Tuples
+- Basic For Loop: `for item in my_tuple: print(item)`
+- With Index: `for index, item in enumerate(my_tuple): print(index, item)`
+
+### Looping Over Sets
+- Basic For Loop: `for item in my_set: print(item)`
+
+### Looping Over Dictionaries
+- Over Keys: `for key in my_dict: print(key)`
+- Over Values: `for value in my_dict.values(): print(value)`
+- Over Key-Value Pairs: `for key, value in my_dict.items(): print(key, value)`
+
+### Advanced Looping Techniques
+- List Comprehensions: `[expression for item in iterable]`
+- Nested Loops: `for item1 in iterable1: for item2 in iterable2: # process`
+- While Loops: `while condition: # process`
+- Infinite Loop With Break: `while True: if exit_condition: break`
+- Loop With `continue`: `for item in iterable: if some_condition: continue`
+
