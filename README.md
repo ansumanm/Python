@@ -82,7 +82,8 @@ Python offers several built-in data structures that are optimized for various us
 - **Creation**: `my_list = [1, 2, 3]` or `my_list = list()`
 - **Common Operations**:
   - Append: `my_list.append(item)`
-  - Remove: `my_list.remove(item)`
+  - Remove: `my_list.remove(item)` # Remove first occurence of the item from the list
+  - Pop: `my_list.pop()` # Remove last element
   - Insert: `my_list.insert(index, item)`
   - Index: `index = my_list.index(item)`
   - Count: `count = my_list.count(item)`
