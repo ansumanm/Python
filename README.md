@@ -153,3 +153,48 @@ Python's data structures are powerful and provide a wide range of functionality 
 - Infinite Loop With Break: `while True: if exit_condition: break`
 - Loop With `continue`: `for item in iterable: if some_condition: continue`
 
+# Python 'If' Checks in Data Structures Reference Card
+
+## Checking in Lists, Tuples and Sets
+
+### Check if Item Exists
+```python
+if item in my_list:
+    # Do something
+
+### Check if List is Empty
+```python
+if not my_list:
+    # List is empty
+
+## Checking in Dictionary
+### Check if Key Exists
+```python
+if key in my_dict:
+  # Do something
+
+### Check if Dictionary is Empty
+```python
+if not my_dict:
+  # Do something
+
+### Check if value exists
+```python
+if value in my_dict.values():
+  # Do something
+
+## Additional Checks
+### Check if All/Any Elements Meet a condition (Lists, Sets, Tuples)
+#### A elements meet the condtition
+```python
+if all(condition(item) for item in iterable):
+  # Do something
+
+#### If any element meets the condition:
+if any(condition(item) for item in iterable):
+  # Do something
+
+### Check for a specific number of occurences(Lists, Tuples)
+```python
+if my_list.count(item) == n:
+  # Do something
