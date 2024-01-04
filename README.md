@@ -1,10 +1,13 @@
+Here's the markdown document corrected for markdown formatting errors:
+
+```markdown
 # Python 3 String Operations Reference Sheet
 
 ## Basic String Operations
 
 ### Creating a String
 - Single quotes: `str1 = 'Hello'`
-- Double quotes: `str2 = \"World\"`
+- Double quotes: `str2 = "World"`
 - Triple quotes: `str3 = '''Hello World'''`
 
 ### Concatenating Strings
@@ -23,7 +26,7 @@
 
 ### Finding Substrings
 - `find(substring)`: Returns the lowest index of the substring if found, else -1.
-- `index(substring)`: Like `find()`, but raises an `ValueError` if not found.
+- `index(substring)`: Like `find()`, but raises a `ValueError` if not found.
 
 ### Replacing Substrings
 - `replace(old, new)`: Returns a new string where all occurrences of `old` have been replaced by `new`.
@@ -51,24 +54,24 @@
 ## Formatting Strings
 
 ### Old Style (% Operator)
-- Syntax: `\"%s %s\" % (str1, str2)`
-- Example: `formatted = \"%d apples\" % 5`
+- Syntax: `"%s %s" % (str1, str2)`
+- Example: `formatted = "%d apples" % 5`
 
 ### New Style (`format` method)
-- Syntax: `\"{} and {}\".format(str1, str2)`
-- Example: `formatted = \"{} apples\".format(5)`
+- Syntax: `"{} and {}".format(str1, str2)`
+- Example: `formatted = "{} apples".format(5)`
 
 ### f-Strings (Python 3.6+)
-- Syntax: `f\"{variable1} and {variable2}\"`
-- Example: `formatted = f\"{5} apples\"`
+- Syntax: `f"{variable1} and {variable2}"`
+- Example: `formatted = f"{5} apples"`
 
 ## String Literals
 
 ### Raw Strings
-- Syntax: `r\"Raw\nString\"` (no escaping)
+- Syntax: `r"Raw\nString"` (no escaping)
 
 ### Unicode Strings
-- Syntax: `u\"Unicode\"` (Python 2 compatibility)
+- Syntax: `u"Unicode"` (Python 2 compatibility)
 
 Remember, strings in Python are immutable, which means once a string is created, it cannot be modified.
 
@@ -82,7 +85,7 @@ Python offers several built-in data structures that are optimized for various us
 - **Creation**: `my_list = [1, 2, 3]` or `my_list = list()`
 - **Common Operations**:
   - Append: `my_list.append(item)`
-  - Remove: `my_list.remove(item)` # Remove first occurence of the item from the list
+  - Remove: `my_list.remove(item)` # Remove first occurrence of the item from the list
   - Pop: `my_list.pop()` # Remove last element
   - Insert: `my_list.insert(index, item)`
   - Index: `index = my_list.index(item)`
@@ -106,7 +109,9 @@ Python offers several built-in data structures that are optimized for various us
   - Remove: `my_set.remove(item)`
   - Union: `union_set = my_set.union(other_set)`
   - Intersection: `intersection_set = my_set.intersection(other_set)`
-  - Difference: `difference_set = my_set.difference(other_set)`
+  -
+
+ Difference: `difference_set = my_set.difference(other_set)`
   - Symmetric Difference: `sym_diff_set = my_set.symmetric_difference(other_set)`
 
 ## Dictionaries
@@ -155,46 +160,58 @@ Python's data structures are powerful and provide a wide range of functionality 
 
 # Python 'If' Checks in Data Structures Reference Card
 
-## Checking in Lists, Tuples and Sets
+## Checking in Lists, Tuples, and Sets
 
 ### Check if Item Exists
 ```python
 if item in my_list:
     # Do something
+```
 
 ### Check if List is Empty
 ```python
 if not my_list:
     # List is empty
+```
 
 ## Checking in Dictionary
+
 ### Check if Key Exists
 ```python
 if key in my_dict:
-  # Do something
+    # Do something
+```
 
 ### Check if Dictionary is Empty
 ```python
 if not my_dict:
-  # Do something
+    # Dictionary is empty
+```
 
-### Check if value exists
+### Check if Value Exists
 ```python
 if value in my_dict.values():
-  # Do something
+    # Do something
+```
 
 ## Additional Checks
-### Check if All/Any Elements Meet a condition (Lists, Sets, Tuples)
-#### A elements meet the condtition
+
+### Check if All/Any Elements Meet a Condition (Lists, Sets, Tuples)
+#### All elements meet the condition
 ```python
 if all(condition(item) for item in iterable):
-  # Do something
+    # Do something
+```
 
 #### If any element meets the condition:
+```python
 if any(condition(item) for item in iterable):
-  # Do something
+    # Do something
+```
 
-### Check for a specific number of occurences(Lists, Tuples)
+### Check for a Specific Number of Occurrences (Lists, Tuples)
 ```python
 if my_list.count(item) == n:
-  # Do something
+    # Do something
+```
+```
