@@ -155,6 +155,17 @@ Python's data structures are powerful and provide a wide range of functionality 
 - Infinite Loop With Break: `while True: if exit_condition: break`
 - Loop With `continue`: `for item in iterable: if some_condition: continue`
 
+## While Loop
+
+```python
+while True:
+    # Code block to execute
+
+    # Condition to continue/exit the loop
+    if not condition:
+        break
+
+
 # Python 'If' Checks in Data Structures Reference Card
 
 ## Checking in Lists, Tuples, and Sets
