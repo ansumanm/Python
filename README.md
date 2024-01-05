@@ -181,6 +181,12 @@ The `range()` function in Python is used to generate a sequence of numbers, maki
 3. **Three Arguments**: `range(start, stop, step)`
    - Starts from `start`, increments by `step`, stops before `stop`.
    - Example: `range(2, 10, 2)` yields `2, 4, 6, 8`.
+4. **Generate numbers in reverse**
+   ```python
+   # Example: Generate numbers from 10 down to 1
+   for i in range(10, 0, -1):
+     print(i)
+   ```
 
 ### Characteristics
 - Produces numbers lazily for efficiency.
