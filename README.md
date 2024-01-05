@@ -166,6 +166,42 @@ while True:
         break
 ```
 
+## `range` Function
+The `range()` function in Python is used to generate a sequence of numbers, making it a staple in loop constructions. It can be used in multiple ways:
+
+### Syntax
+1. **Single Argument**: `range(stop)`
+   - Generates numbers from 0 to `stop-1`.
+   - Example: `range(5)` yields `0, 1, 2, 3, 4`.
+
+2. **Two Arguments**: `range(start, stop)`
+   - Creates numbers from `start` to `stop-1`.
+   - Example: `range(2, 6)` yields `2, 3, 4, 5`.
+
+3. **Three Arguments**: `range(start, stop, step)`
+   - Starts from `start`, increments by `step`, stops before `stop`.
+   - Example: `range(2, 10, 2)` yields `2, 4, 6, 8`.
+
+### Characteristics
+- Produces numbers lazily for efficiency.
+- Commonly used in `for` loops.
+- Returns a range object, convertible to a list.
+
+## Inner Loops in Python
+Inner loops are loops within another loop (outer loop), allowing for more complex data processing.
+
+### Usage
+- Common in algorithms for comparing pairs or processing multi-dimensional data.
+- The inner loop runs in its entirety for each iteration of the outer loop.
+
+### Example
+```python
+for i in range(3):  # Outer loop
+    for j in range(3):  # Inner loop
+        print(i, j)
+```
+
+
 # Python 'If' Checks in Data Structures Reference Card
 
 ## Checking in Lists, Tuples, and Sets
