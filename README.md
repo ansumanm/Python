@@ -93,7 +93,26 @@ Python offers several built-in data structures that are optimized for various us
 
 ### Accessing Elements
 - Access by index: `element = my_list[index]`
-- Slicing: `sub_list = my_list[start:end]`
+- Slicing: `sub_list = my_list[start:end]` # start is inclusive, where as end is exclusive.
+- Examples:
+```python
+# Basic Slicing: Get elements from index 1 to 3.
+my_list = [0, 1, 2, 3, 4, 5]
+slice1 = my_list[1:4]  # Output: [1, 2, 3]
+
+# Get the entire list
+full_slice = my_list[:]  # Output: [0, 1, 2, 3, 4, 5]
+
+# Negative slicing: Start from end
+slice_from_end = my_list[-3:]  # Output: [3, 4, 5]
+
+# Step Size: Skip elements
+every_second_element = my_list[::2]  # Output: [0, 2, 4]
+
+# Reverse a list
+reversed_list = my_list[::-1]  # Output: [5, 4, 3, 2, 1, 0]
+```
+
 
 ## Finding Elements
 
