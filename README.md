@@ -1,4 +1,13 @@
-# Python 3 String Operations Reference Sheet
+# Python Reference Sheet
+
+# Table of Contents
+1. [Basic String Operations](#basic-string-operations)
+2. [Common String Methods](#common-string-methods)
+3. [Formatting Strings](#formatting-strings)
+4. [String Literals](#string-literals)
+5. [Basic List Operations](#basic-list-operations)
+6. [Finding Elements](#finding-elements)
+7. [Advanced Operations](#advanced-operations)
 
 ## Basic String Operations
 
@@ -72,7 +81,7 @@
 
 Remember, strings in Python are immutable, which means once a string is created, it cannot be modified.
 
-# Python 3 In-built Data Structures Reference Sheet
+# Python 3 In-built Data Structures
 
 ## Overview
 Python offers several built-in data structures that are optimized for various uses. These include lists, tuples, sets, and dictionaries.
