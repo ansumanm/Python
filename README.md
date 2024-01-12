@@ -8,6 +8,7 @@
 5. [Basic List Operations](#basic-list-operations)
 6. [Finding Elements](#finding-elements)
 7. [Advanced Operations](#advanced-operations)
+8. [Weak Hashmap](#weak-hashmap)
 
 ## Basic String Operations
 
@@ -341,4 +342,61 @@ if any(condition(item) for item in iterable):
 if my_list.count(item) == n:
     # Do something
 ```
+
+# Weak Hashmap
+A weak hash map, known as a "WeakHashMap" in some languages like Java, and as a "WeakKeyDictionary" or "WeakValueDictionary" in Python, is a special type of hash map with "weak" keys or values. In such maps, the entries (keys and/or values) are stored using weak references. This means that an entry in a weak hash map does not prevent the key (or value) from being garbage collected.
+
+### Key Characteristics of Weak Hash Maps:
+1. **Garbage Collection**: Entries in a weak hash map can be automatically removed during garbage collection if their keys (or values) are no longer strongly referenced elsewhere in the program.
+2. **Memory Efficiency**: This characteristic makes weak hash maps useful for caching and memory-sensitive applications where you want to avoid memory leaks.
+3. **Use Cases**: Often used for keeping track of objects that have some associated metadata as long as the object is in use elsewhere.
+
+### WeakHashmap in Java:
+In Java, `WeakHashMap` is a part of the standard library. It keeps weak references to its keys, allowing them to be garbage collected when they are no longer used elsewhere.
+
+```java
+WeakHashMap<KeyType, ValueType> weakHashMap = new WeakHashMap<>();
 ```
+
+### Weak References in Python:
+In Python, the `weakref` module provides support for weak references, including `WeakKeyDictionary` and `WeakValueDictionary`. These are similar to the standard `dict` but the keys or values are weakly referenced.
+
+#### Example of WeakKeyDictionary:
+```python
+import weakref
+
+# Create a weak key dictionary
+weak_key_dict = weakref.WeakKeyDictionary()
+
+class MyClass:
+    pass
+
+# Create an object and add it to the dictionary
+obj = MyClass()
+weak_key_dict[obj] = "Some Data"
+
+# As long as 'obj' is referenced, it stays in the dictionary
+print(weak_key_dict)
+
+# If the object is deleted, it will be automatically removed from the dictionary
+del obj
+print(weak_key_dict)  # Dictionary will be empty
+```
+
+#### Example of WeakValueDictionary:
+```python
+# Create a weak value dictionary
+weak_value_dict = weakref.WeakValueDictionary()
+
+obj = MyClass()
+weak_value_dict['my_key'] = obj
+
+# Object is accessible as long as it's not garbage collected
+print(weak_value_dict['my_key'])
+
+# If the object is deleted, its entry is removed from the dictionary
+del obj
+print(weak_value_dict)  # Dictionary will be empty
+```
+
+In these Python examples, `WeakKeyDictionary` and `WeakValueDictionary` automatically remove entries when their weakly referenced keys or values are no longer in use, helping to conserve memory.
