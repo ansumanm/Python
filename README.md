@@ -6,8 +6,10 @@
 3. [Formatting Strings](#formatting-strings)
 4. [String Literals](#string-literals)
 5. [Basic List Operations](#basic-list-operations)
-6. [Finding Elements](#finding-elements)
-7. [Advanced Operations](#advanced-operations)
+6. [List Transformation](#list-transformation)
+7. [Finding Elements](#finding-elements)
+8. [Advanced Operations](#advanced-operations)
+9. [Weak Hashmap](#weak-hashmap)
 
 ## Basic String Operations
 
@@ -162,9 +164,76 @@ reversed_list = my_list[::-1]  # Output: [5, 4, 3, 2, 1, 0]
 - To string: `str(my_list)`
 - To tuple: `tuple(my_list)`
 
-## Note
-- These operations are applicable to lists in Python and can be used to manipulate and process list data efficiently.
+## List Transformation
+Transforming a list in Python to another list typically involves applying some operation or function to each element of the original list and creating a new list with these transformed elements. This can be done in several ways, such as using list comprehensions, the `map()` function, or a loop. Here are some examples demonstrating different methods:
 
+### 1. Using List Comprehension
+
+List comprehension is a concise way to create lists. It consists of brackets containing an expression followed by a `for` clause, then zero or more `for` or `if` clauses.
+
+**Example**: Suppose you want to square each number in a list.
+
+```python
+original_list = [1, 2, 3, 4, 5]
+transformed_list = [x**2 for x in original_list]
+print(transformed_list)  # Output: [1, 4, 9, 16, 25]
+```
+
+### 2. Using the `map()` Function
+
+The `map()` function applies a given function to each item of an iterable (like a list) and returns a map object (which is an iterator).
+
+**Example**: Converting a list of numbers to strings.
+
+```python
+original_list = [1, 2, 3, 4, 5]
+transformed_list = list(map(str, original_list))
+print(transformed_list)  # Output: ['1', '2', '3', '4', '5']
+```
+
+### 3. Using a Loop
+
+You can also use a for-loop to iterate through the original list and build a new list by applying some operation.
+
+**Example**: Adding 10 to each element in a list.
+
+```python
+original_list = [1, 2, 3, 4, 5]
+transformed_list = []
+for item in original_list:
+    transformed_list
+
+.append(item + 10)
+print(transformed_list)  # Output: [11, 12, 13, 14, 15]
+```
+
+### 4. Using Lambda Functions with `map()`
+
+For more complex transformations, you can use lambda functions with `map()`.
+
+**Example**: Multiplying each number by 2 and subtracting 3.
+
+```python
+original_list = [1, 2, 3, 4, 5]
+transformed_list = list(map(lambda x: x * 2 - 3, original_list))
+print(transformed_list)  # Output: [-1, 1, 3, 5, 7]
+```
+
+### 5. Using List Comprehension with Conditional Logic
+
+You can incorporate conditions into list comprehensions to perform more complex transformations.
+
+**Example**: Keeping only even numbers and squaring them.
+
+```python
+original_list = [1, 2, 3, 4, 5]
+transformed_list = [x**2 for x in original_list if x % 2 == 0]
+print(transformed_list)  # Output: [4, 16]
+```
+
+### Conclusion
+
+The method you choose depends on the specific transformation you need and your preference for readability and conciseness. List comprehensions and `map()` are generally more succinct and Pythonic for straightforward transformations. For more complex operations, a loop or lambda functions might be more suitable.
 
 
 ## Tuples
@@ -341,4 +410,61 @@ if any(condition(item) for item in iterable):
 if my_list.count(item) == n:
     # Do something
 ```
+
+# Weak Hashmap
+A weak hash map, known as a "WeakHashMap" in some languages like Java, and as a "WeakKeyDictionary" or "WeakValueDictionary" in Python, is a special type of hash map with "weak" keys or values. In such maps, the entries (keys and/or values) are stored using weak references. This means that an entry in a weak hash map does not prevent the key (or value) from being garbage collected.
+
+### Key Characteristics of Weak Hash Maps:
+1. **Garbage Collection**: Entries in a weak hash map can be automatically removed during garbage collection if their keys (or values) are no longer strongly referenced elsewhere in the program.
+2. **Memory Efficiency**: This characteristic makes weak hash maps useful for caching and memory-sensitive applications where you want to avoid memory leaks.
+3. **Use Cases**: Often used for keeping track of objects that have some associated metadata as long as the object is in use elsewhere.
+
+### WeakHashmap in Java:
+In Java, `WeakHashMap` is a part of the standard library. It keeps weak references to its keys, allowing them to be garbage collected when they are no longer used elsewhere.
+
+```java
+WeakHashMap<KeyType, ValueType> weakHashMap = new WeakHashMap<>();
 ```
+
+### Weak References in Python:
+In Python, the `weakref` module provides support for weak references, including `WeakKeyDictionary` and `WeakValueDictionary`. These are similar to the standard `dict` but the keys or values are weakly referenced.
+
+#### Example of WeakKeyDictionary:
+```python
+import weakref
+
+# Create a weak key dictionary
+weak_key_dict = weakref.WeakKeyDictionary()
+
+class MyClass:
+    pass
+
+# Create an object and add it to the dictionary
+obj = MyClass()
+weak_key_dict[obj] = "Some Data"
+
+# As long as 'obj' is referenced, it stays in the dictionary
+print(weak_key_dict)
+
+# If the object is deleted, it will be automatically removed from the dictionary
+del obj
+print(weak_key_dict)  # Dictionary will be empty
+```
+
+#### Example of WeakValueDictionary:
+```python
+# Create a weak value dictionary
+weak_value_dict = weakref.WeakValueDictionary()
+
+obj = MyClass()
+weak_value_dict['my_key'] = obj
+
+# Object is accessible as long as it's not garbage collected
+print(weak_value_dict['my_key'])
+
+# If the object is deleted, its entry is removed from the dictionary
+del obj
+print(weak_value_dict)  # Dictionary will be empty
+```
+
+In these Python examples, `WeakKeyDictionary` and `WeakValueDictionary` automatically remove entries when their weakly referenced keys or values are no longer in use, helping to conserve memory.
