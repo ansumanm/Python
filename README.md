@@ -10,6 +10,7 @@
 7. [Finding Elements](#finding-elements)
 8. [Advanced Operations](#advanced-operations)
 9. [Weak Hashmap](#weak-hashmap)
+10. [Deque](#deque)
 
 ## Basic String Operations
 
@@ -466,5 +467,61 @@ print(weak_value_dict['my_key'])
 del obj
 print(weak_value_dict)  # Dictionary will be empty
 ```
+
+# Deque
+
+The `deque` (double-ended queue) is a data structure from the `collections` module in Python that supports adding and removing elements from either end with fast and efficient operations. It is implemented to perform append and pop operations from both ends in O(1) time complexity, making it suitable for queues and stacks where such operations are frequent.
+
+### Key `deque` APIs and Their Usage:
+
+1. **Initialization**
+   - `deque(iterable=None, maxlen=None)`: Creates a new deque object that is initialized left-to-right (using the iterable argument) with data from iterable. If iterable is not specified, the new deque is empty. `maxlen` is an optional argument that sets the maximum length of the deque. If it is exceeded, older items are automatically removed from the opposite end.
+
+2. **Adding Elements**
+   - `append(x)`: Adds `x` to the right side of the deque.
+   - `appendleft(x)`: Adds `x` to the left side of the deque.
+   - `extend(iterable)`: Adds all elements from `iterable` to the right side of the deque.
+   - `extendleft(iterable)`: Adds all elements from `iterable` to the left side of the deque (note that this results in the elements being added in reverse order from the iterable).
+
+3. **Removing Elements**
+   - `pop()`: Removes and returns an element from the right side of the deque. Raises an IndexError if no elements are present.
+   - `popleft()`: Removes and returns an element from the left side of the deque. Raises an IndexError if no elements are present.
+   - `clear()`: Removes all elements from the deque.
+
+4. **Peeking**
+   - Deques do not have a direct method for peeking at items without removing them, but you can access elements by index (e.g., `deque[-1]` for the rightmost item, `deque[0]` for the leftmost item).
+
+5. **Deque Properties and Methods**
+   - `maxlen`: Property that returns the maximum size of the deque or `None` if unbounded.
+   - `rotate(n=1)`: Rotates the deque `n` steps to the right. If `n` is negative, it rotates to the left.
+   - `count(x)`: Counts the number of deque elements equal to `x`.
+   - `reverse()`: Reverses the elements of the deque in-place.
+   - `copy()`: Creates a shallow copy of the deque.
+
+### Usage Examples
+
+```python
+from collections import deque
+
+# Creating and populating a deque
+dq = deque([1, 2, 3], maxlen=5)
+dq.append(4)  # deque becomes [1, 2, 3, 4]
+dq.appendleft(0)  # deque becomes [0, 1, 2, 3, 4]
+dq.extend([5, 6])  # deque becomes [2, 3, 4, 5, 6] because of maxlen
+
+# Removing elements
+dq.pop()  # Returns 6, deque becomes [2, 3, 4, 5]
+dq.popleft()  # Returns 2, deque becomes [3, 4, 5]
+
+# Rotating elements
+dq.rotate(1)  # deque becomes [5, 3, 4]
+dq.rotate(-1)  # deque becomes [3, 4, 5]
+
+# Accessing elements
+first_item = dq[0]  # Access the first item (leftmost)
+last_item = dq[-1]  # Access the last item (rightmost)
+```
+
+The `deque` is highly versatile and can be used in various scenarios requiring efficient FIFO (First In First Out) or LIFO (Last In First Out) data handling, such as implementing queues, stacks, or even for use in algorithms requiring fast appends and pops from both ends of a collection.
 
 In these Python examples, `WeakKeyDictionary` and `WeakValueDictionary` automatically remove entries when their weakly referenced keys or values are no longer in use, helping to conserve memory.
