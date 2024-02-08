@@ -11,6 +11,7 @@
 8. [Advanced Operations](#advanced-operations)
 9. [Weak Hashmap](#weak-hashmap)
 10. [Deque](#deque)
+11. [Generators](#generators)
 
 ## Basic String Operations
 
@@ -524,4 +525,36 @@ last_item = dq[-1]  # Access the last item (rightmost)
 
 The `deque` is highly versatile and can be used in various scenarios requiring efficient FIFO (First In First Out) or LIFO (Last In First Out) data handling, such as implementing queues, stacks, or even for use in algorithms requiring fast appends and pops from both ends of a collection.
 
-In these Python examples, `WeakKeyDictionary` and `WeakValueDictionary` automatically remove entries when their weakly referenced keys or values are no longer in use, helping to conserve memory.
+# Generators
+
+Generator functions and the associated keywords `yield`, `yield from`, `next()`, `send()`, and `throw()` provide a powerful set of tools in Python for creating and interacting with generators. Generators are a special type of iterator that lazily generate values on the fly without needing to store the entire sequence in memory. Here's a summary of each component:
+
+### `yield`
+- **Purpose:** Used in a function to pause execution and return a value to the caller, turning the function into a generator function. When the generator is resumed, execution continues from where it left off.
+- **Usage:** `yield` is used to yield a value from a generator function. Each call to `next()` on the generator resumes execution just after the last `yield`.
+
+### `yield from`
+- **Purpose:** Simplifies generator delegation by allowing one generator to yield all values from another generator or iterable. It's particularly useful for nesting generators.
+- **Usage:** `yield from <iterable or generator>` is used within a generator function to yield all values from the specified iterable or generator, effectively "flattening" nested generators.
+
+### `next()`
+- **Purpose:** Advances a generator to its next yield and returns the next value. If the generator has no more values to yield, it raises a `StopIteration` exception.
+- **Usage:** `next(generator)` is called on a generator object to get the next yielded value.
+
+### `send()`
+- **Purpose:** Resumes the generator and sends a value that becomes the result of the current `yield` expression. The first call to `send()` must be with `None` as the argument, as there's no `yield` waiting to receive a value initially.
+- **Usage:** `generator.send(value)` sends a value into the generator, which is received by the `yield` expression. It can be used to communicate with the generator, influencing its execution.
+
+### `throw()`
+- **Purpose:** Allows throwing exceptions from the calling context into the generator at the `yield` point. This can be used to handle errors or to trigger an exception within the generator.
+- **Usage:** `generator.throw(type[, value[, traceback]])` throws an exception of type `type` at the point where the generator is paused, and execution resumes until the next `yield` or the generator exits.
+
+### Summary
+- Generators are created by defining functions with the `yield` keyword.
+- `yield` produces a value and pauses the generator function.
+- `yield from` delegates to a sub-generator or iterable.
+- `next()` resumes the generator to produce the next value.
+- `send()` sends a value back into the generator, influencing its behavior.
+- `throw()` is used to raise exceptions within the generator at the yield point.
+
+Together, these features enable complex and memory-efficient data processing, allowing Python programmers to handle large data streams or computationally expensive sequences in a lazy evaluation manner.
