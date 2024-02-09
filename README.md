@@ -10,6 +10,8 @@
 7. [Finding Elements](#finding-elements)
 8. [Advanced Operations](#advanced-operations)
 9. [Weak Hashmap](#weak-hashmap)
+10. [Deque](#deque)
+11. [Generators](#generators)
 
 ## Basic String Operations
 
@@ -467,4 +469,120 @@ del obj
 print(weak_value_dict)  # Dictionary will be empty
 ```
 
-In these Python examples, `WeakKeyDictionary` and `WeakValueDictionary` automatically remove entries when their weakly referenced keys or values are no longer in use, helping to conserve memory.
+# Deque
+
+The `deque` (double-ended queue) is a data structure from the `collections` module in Python that supports adding and removing elements from either end with fast and efficient operations. It is implemented to perform append and pop operations from both ends in O(1) time complexity, making it suitable for queues and stacks where such operations are frequent.
+
+### Key `deque` APIs and Their Usage:
+
+1. **Initialization**
+   - `deque(iterable=None, maxlen=None)`: Creates a new deque object that is initialized left-to-right (using the iterable argument) with data from iterable. If iterable is not specified, the new deque is empty. `maxlen` is an optional argument that sets the maximum length of the deque. If it is exceeded, older items are automatically removed from the opposite end.
+
+2. **Adding Elements**
+   - `append(x)`: Adds `x` to the right side of the deque.
+   - `appendleft(x)`: Adds `x` to the left side of the deque.
+   - `extend(iterable)`: Adds all elements from `iterable` to the right side of the deque.
+   - `extendleft(iterable)`: Adds all elements from `iterable` to the left side of the deque (note that this results in the elements being added in reverse order from the iterable).
+
+3. **Removing Elements**
+   - `pop()`: Removes and returns an element from the right side of the deque. Raises an IndexError if no elements are present.
+   - `popleft()`: Removes and returns an element from the left side of the deque. Raises an IndexError if no elements are present.
+   - `clear()`: Removes all elements from the deque.
+
+4. **Peeking**
+   - Deques do not have a direct method for peeking at items without removing them, but you can access elements by index (e.g., `deque[-1]` for the rightmost item, `deque[0]` for the leftmost item).
+
+5. **Deque Properties and Methods**
+   - `maxlen`: Property that returns the maximum size of the deque or `None` if unbounded.
+   - `rotate(n=1)`: Rotates the deque `n` steps to the right. If `n` is negative, it rotates to the left.
+   - `count(x)`: Counts the number of deque elements equal to `x`.
+   - `reverse()`: Reverses the elements of the deque in-place.
+   - `copy()`: Creates a shallow copy of the deque.
+
+### Usage Examples
+
+```python
+from collections import deque
+
+# Creating and populating a deque
+dq = deque([1, 2, 3], maxlen=5)
+dq.append(4)  # deque becomes [1, 2, 3, 4]
+dq.appendleft(0)  # deque becomes [0, 1, 2, 3, 4]
+dq.extend([5, 6])  # deque becomes [2, 3, 4, 5, 6] because of maxlen
+
+# Removing elements
+dq.pop()  # Returns 6, deque becomes [2, 3, 4, 5]
+dq.popleft()  # Returns 2, deque becomes [3, 4, 5]
+
+# Rotating elements
+dq.rotate(1)  # deque becomes [5, 3, 4]
+dq.rotate(-1)  # deque becomes [3, 4, 5]
+
+# Accessing elements
+first_item = dq[0]  # Access the first item (leftmost)
+last_item = dq[-1]  # Access the last item (rightmost)
+```
+
+The `deque` is highly versatile and can be used in various scenarios requiring efficient FIFO (First In First Out) or LIFO (Last In First Out) data handling, such as implementing queues, stacks, or even for use in algorithms requiring fast appends and pops from both ends of a collection.
+
+# Generators
+
+Generator functions and the associated keywords `yield`, `yield from`, `next()`, `send()`, and `throw()` provide a powerful set of tools in Python for creating and interacting with generators. Generators are a special type of iterator that lazily generate values on the fly without needing to store the entire sequence in memory. Here's a summary of each component:
+
+### `yield`
+- **Purpose:** Used in a function to pause execution and return a value to the caller, turning the function into a generator function. When the generator is resumed, execution continues from where it left off.
+- **Usage:** `yield` is used to yield a value from a generator function. Each call to `next()` on the generator resumes execution just after the last `yield`.
+
+### `yield from`
+- **Purpose:** Simplifies generator delegation by allowing one generator to yield all values from another generator or iterable. It's particularly useful for nesting generators.
+- **Usage:** `yield from <iterable or generator>` is used within a generator function to yield all values from the specified iterable or generator, effectively "flattening" nested generators.
+
+### `next()`
+- **Purpose:** Advances a generator to its next yield and returns the next value. If the generator has no more values to yield, it raises a `StopIteration` exception.
+- **Usage:** `next(generator)` is called on a generator object to get the next yielded value.
+
+### `send()`
+- **Purpose:** Resumes the generator and sends a value that becomes the result of the current `yield` expression. The first call to `send()` must be with `None` as the argument, as there's no `yield` waiting to receive a value initially.
+- **Usage:** `generator.send(value)` sends a value into the generator, which is received by the `yield` expression. It can be used to communicate with the generator, influencing its execution.
+
+### `throw()`
+- **Purpose:** Allows throwing exceptions from the calling context into the generator at the `yield` point. This can be used to handle errors or to trigger an exception within the generator.
+- **Usage:** `generator.throw(type[, value[, traceback]])` throws an exception of type `type` at the point where the generator is paused, and execution resumes until the next `yield` or the generator exits.
+
+Besides the commonly used `yield`, `yield from`, `next()`, `send()`, and `throw()` functions and expressions for interacting with generators, there are a couple of other concepts and functions related to generators in Python that are worth mentioning:
+
+### `iter()`
+While not exclusively for generators, `iter()` is fundamental in understanding how generators work, as generators are iterators themselves. The `iter()` function returns an iterator object from an iterable (like lists, tuples, etc.), and generators naturally implement the iterator protocol (`__iter__()` and `__next__()` methods).
+
+### `close()`
+Generators have a `close()` method, which is used to stop a generator. Calling `close()` on a generator raises a `GeneratorExit` exception inside the generator to terminate the iteration. After calling `close()`, further attempts to advance the generator using `next()` will raise `StopIteration`.
+
+### Generator Expressions
+Generator expressions provide a concise way to create generators without the need for a full generator function. They look a lot like list comprehensions but use parentheses instead of square brackets. For example:
+```python
+gen_expr = (x * 2 for x in range(10))
+```
+This generator expression creates a generator that doubles numbers from 0 to 9.
+
+### `gi_running` Attribute
+Generator objects have a `gi_running` attribute, which is True when the generator is executing but False otherwise. This can be useful for debugging or understanding the state of a generator.
+
+### `gi_frame` Attribute
+Generators also have a `gi_frame` attribute, which refers to the frame object representing the generator's execution state. This can be used for introspection or debugging purposes to understand the context of the generator's current state of execution.
+
+### `gi_code` Attribute
+This attribute of a generator object holds the code object representing the compiled generator function. It can be used for introspection, similar to `gi_frame`, to examine the bytecode and other details of the generator function.
+
+### `gi_yieldfrom` Attribute (Python 3.3+)
+For generators that use `yield from`, this attribute holds the object being iterated over by `yield from`. It's useful for introspection, especially when debugging complex generators involving nested `yield from` expressions.
+
+These attributes and methods, combined with the basic generator functionality, provide a robust set of tools for creating efficient and lazy iterators in Python, suitable for handling large datasets or complex streaming data without the need for loading everything into memory.
+### Summary
+- Generators are created by defining functions with the `yield` keyword.
+- `yield` produces a value and pauses the generator function.
+- `yield from` delegates to a sub-generator or iterable.
+- `next()` resumes the generator to produce the next value.
+- `send()` sends a value back into the generator, influencing its behavior.
+- `throw()` is used to raise exceptions within the generator at the yield point.
+
+Together, these features enable complex and memory-efficient data processing, allowing Python programmers to handle large data streams or computationally expensive sequences in a lazy evaluation manner.
