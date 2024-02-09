@@ -1,4 +1,9 @@
 class Solution:
+    """
+    Problem: Given a list of strings, for ex. ["abc", "defg", "hij" ..] , generate
+    all possible combinations using a character from each list.
+    Solution #1: Most simple, using recursion and python generators.
+    """
     def generateCombinations(self, strList, index=0, prefix=""):
         if index == len(strList):
             yield prefix
@@ -6,6 +11,13 @@ class Solution:
             for char in strList[index]:
                 yield from self.generateCombinations(strList, index + 1, prefix + char)
 
+    """
+    Solution #2: Make a list of indices, for [m, n, o, p], where each value is an index
+    into the String list. Generate the index for least value and max value, i.e
+    [0,0,0,0] to [len(str0) -1, len(str1) -1, ...]. Using this index list, index into 
+    each string of the string list and generate the combination.
+    This uses a while loop without using recursion.
+    """
     def generateIndex(self, max_index_list):
         index_list = [0] * len(max_index_list)
 
