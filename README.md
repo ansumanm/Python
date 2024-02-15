@@ -12,6 +12,7 @@
 9. [Weak Hashmap](#weak-hashmap)
 10. [Deque](#deque)
 11. [Generators](#generators)
+12. [Read a file line by line](#read-a-file-line-by-line)
 
 ## Basic String Operations
 
@@ -586,3 +587,13 @@ These attributes and methods, combined with the basic generator functionality, p
 - `throw()` is used to raise exceptions within the generator at the yield point.
 
 Together, these features enable complex and memory-efficient data processing, allowing Python programmers to handle large data streams or computationally expensive sequences in a lazy evaluation manner.
+
+# Read a file line by line
+``` Python
+try:
+    with open("file.txt", "r") as file:
+        for f in file.readlines():
+            print(f.strip('\n'))
+except:
+    pass
+```
