@@ -12,7 +12,7 @@
 9. [Weak Hashmap](#weak-hashmap)
 10. [Deque](#deque)
 11. [Generators](#generators)
-12. [Read a file line by line](#read-a-file-line-by-line)
+12. [File Operations](#file-operations)
 
 ## Basic String Operations
 
@@ -588,7 +588,17 @@ These attributes and methods, combined with the basic generator functionality, p
 
 Together, these features enable complex and memory-efficient data processing, allowing Python programmers to handle large data streams or computationally expensive sequences in a lazy evaluation manner.
 
-# Read a file line by line
+# File operations
+### Write some data to file
+``` Python
+try:
+    file = open("filename.txt", "w")
+    file.write("Test data.")
+    file.close()
+except:
+    print("Failed to open file for writing.")
+```
+### Read a file line by line
 ``` Python
 try:
     with open("file.txt", "r") as file:
