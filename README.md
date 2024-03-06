@@ -30,7 +30,7 @@
 - Negative index: `char = str1[-1]` (last character)
 
 ### Slicing Strings
-- Syntax: `substring = str1[start:end]`
+- Syntax: `substring = str1[start:end]` # start is inclusive, end is exclusive
 - Example: `first_three = str1[0:3]`
 
 ## Common String Methods
