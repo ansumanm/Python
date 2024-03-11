@@ -4,6 +4,38 @@ Binary tree.
 
 from typing import Tuple, List
 
+"""
+For Tree to List problem
+"""
+class ListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, value):
+        newNode = ListNode(value)
+
+        # Insert into list
+        if self.head is None:
+            self.head = newNode
+        else:
+            # Insert at front
+            newNode.next = self.head
+            self.head = newNode
+
+    def walk(self) -> List[ListNode]:
+        result = []
+        node = self.head
+        while node:
+            result.append(node.value)
+            node = node.next
+
+        return result
+
 
 class TreeNode:
     def __init__(self, value):
@@ -230,6 +262,18 @@ class BinaryTree:
             return depthRight, pathRight
         else:
             return depthLeft, pathLeft
+        
+    def tree_to_list(self, list: LinkedList) -> None:
+        self._tree_to_list_recursive(self.root, list)
+
+    def _tree_to_list_recursive(self, treeNode: TreeNode, list: LinkedList):
+        if treeNode is None:
+            return
+        
+        list.insert(treeNode.value)
+        self._tree_to_list_recursive(treeNode.left, list)
+        self._tree_to_list_recursive(treeNode.right, list)
+        del treeNode
 
 
 if __name__ == "__main__":
@@ -284,6 +328,10 @@ if __name__ == "__main__":
     print("Depth of node 2: ", depth, [node.value for node in path])
     depth, path = bt.find_depth(bt.root)
     print("Depth of node 5: ", depth, [node.value for node in path])
+
+    ll = LinkedList()
+    bt.tree_to_list(ll)
+    print(ll.walk())
 
 
 #     print(
