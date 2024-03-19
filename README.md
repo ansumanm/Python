@@ -607,3 +607,42 @@ try:
 except:
     pass
 ```
+
+# JSON file operations
+This is an example program to read from and write to a json file.
+
+``` Python
+import json
+
+# File paths
+input_file_path = 'example.json'
+output_file_path = 'modified_example.json'
+
+# Read data from a JSON file
+def read_json(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            return data
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
+
+# Write data to a JSON file
+def write_json(data, file_path):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)  # `indent=4` for pretty-printing
+
+# Example usage
+data = read_json(input_file_path)
+if data is not None:
+    print("Original data:", data)
+    
+    # Modify the data here as needed
+    # For example, add a new key-value pair
+    data['new_key'] = 'new_value'
+    
+    # Write the modified data to a new file
+    write_json(data, output_file_path)
+    print(f"Modified data has been written to {output_file_path}")
+```
