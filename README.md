@@ -13,6 +13,7 @@
 10. [Deque](#deque)
 11. [Generators](#generators)
 12. [File Operations](#file-operations)
+13. [JSON File Operations](#json-file-operations)
 
 ## Basic String Operations
 
